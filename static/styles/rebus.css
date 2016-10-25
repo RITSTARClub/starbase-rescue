@@ -1,0 +1,70 @@
+body {
+	padding-bottom: 300px;
+}
+
+.passField {
+	display: block;
+	width: 90%;
+	margin: 48px auto;
+	padding: 8px 12px;
+	
+	font-size: 48px;
+	font-family: inherit;
+	
+	border: 1px solid #cc6699;
+	background-color: rgba(204, 102, 153, 0.1);
+	color: transparent;
+	text-shadow: 0 0 0 white
+}
+	.passField:focus {
+		background-color: rgba(204, 102, 153, 0.4);
+		outline: 0 none;
+	}
+	.passField.unlocked,
+	.unlocked .passField {
+		background-color: rgba(255, 255, 255, 0.1);
+		border-color: rgba(255, 255, 255, 0.25);
+		color: rgba(255, 255, 255, 0.25);
+	}
+
+#keyboard {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	text-align: center;
+}
+	#keyboard button {
+		font-size: 42px;
+		padding: 20px 24px 14px;
+		margin: 4px 4px;
+		min-width: 104px;
+		line-height: 48px;
+	}
+		#keyboard button:last-of-type {
+			margin-left: 24px;
+			padding-left: 32px;
+			padding-right: 32px;
+		}
+			#keyboard button:last-of-type:not(:active):not(.active) {
+				background-color: #cc6699;
+			}
+
+
+#bsod {
+	display: none;
+	
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	overflow: hidden;
+	z-index: 100;
+	
+	background-color: #000080;
+	color: white;
+	font-family: 'Fixedsys', monospace;
+	font-weight: bold;
+	padding: 8px;
+}

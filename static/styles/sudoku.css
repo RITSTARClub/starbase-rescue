@@ -1,0 +1,49 @@
+#gameGrid {
+	margin: 1em auto;
+}
+	#gameGrid td {
+		color: white;
+		border: 1px solid #ffcc99;
+		text-align: center;
+		font-size: 64px;
+		width: 96px;
+		height: 92px;
+		padding-top: 4px;
+		box-sizing: border-box;
+	}
+		#gameGrid td:nth-child(3n) {
+			border-right-width: 3px;
+		}
+		#gameGrid td:first-child,
+		#gameGrid td:nth-child(3n+1) {
+			border-left-width: 3px;
+		}
+		#gameGrid tr:nth-child(3n) td {
+			border-bottom-width: 3px;
+		}
+		#gameGrid tr:first-child td,
+		#gameGrid tr:nth-child(3n+1) td {
+			border-top-width: 3px;
+		}
+		
+		#gameGrid td.autofilled {
+			color: #b0b0b0;
+		}
+		#gameGrid td.focused {
+			box-shadow: inset 0 0 0 2px black, inset 0 0 0 8px #8d9bff;
+		}
+	
+	.unlocked #gameGrid,
+	.unlocked #gameGrid td {
+		border-color: #97c3e1;
+	}
+		.unlocked #gameGrid td.codePiece {
+			background-color: white;
+			color: black;
+		}
+
+
+#buttonPanel button {
+	font-size: 64px;
+	padding: 0.25em 1em 0.1em;
+}

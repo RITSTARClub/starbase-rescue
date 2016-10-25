@@ -1,0 +1,33 @@
+
+
+#gameGrid {
+	margin: 2em auto 0;
+}
+	#gameGrid td {
+		border: 1px solid #c69;
+		width: 96px;
+		height: 96px;
+	}
+	#gameGrid.solved,
+	#gameGrid.solved td {
+		border-color: #97c3e1;
+	}
+	
+	#gameGrid td.filled {
+		background-color: #99c;
+	}
+	
+	.unlocked #gameGrid td {
+		border-color: #97c3e1;
+	}
+		.unlocked #gameGrid td.filled {
+			background-color: #999;
+		}
+
+#outputGrid td {
+	color: #999; /* Heh */
+	font-size: 64px;
+}
+	#outputGrid .complete td {
+		color: #f0fff0;
+	}
