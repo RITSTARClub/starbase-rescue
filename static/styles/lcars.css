@@ -153,3 +153,32 @@ table.headerBar {
 		.unlocked table.headerBar td:nth-child(3) {
 			background-color: #97c3e1;
 		}
+
+h1 {
+	font-size: 96px;
+}
+
+progress {
+	-webkit-appearance: none;
+	
+	height: 64px;
+	border: 4px solid #ffcc99;
+	border-radius: 32px;
+	outline: 0 none;
+	
+	overflow: hidden;
+	background-color: black;
+	
+	-webkit-transition-duration: 0.1s;
+	   -moz-transition-duration: 0.1s;
+	        transition-duration: 0.1s;
+}
+	progress::-webkit-progress-bar {
+		background-color: black;
+	}
+	
+	progress::-webkit-progress-bar-value,
+	progress::-webkit-progress-value,
+	progress::-webkit-progress-inner-element {
+		background-color: #ffcc99;
+	}

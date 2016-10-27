@@ -1,0 +1,20 @@
+{% include 'head.html' %}
+		<link rel="stylesheet" type="text/css" href="/static/styles/basic_page.css" />
+	</head>
+	<body>
+		<h2 style="margin: 0;">Admin Control For</h2>
+		<h1 style="margin: 0;">JAR-EL TRACK</h1>
+		<button onclick="GAME.pushState(GAME.TRACK_JAR_EL, GAME.STATE_FIRST);">Start Track</button>
+		<br />
+		<br />
+		<button onclick="GAME.pushState(GAME.TRACK_JAR_EL, GAME.STATE_FINAL);">Final Room</button>
+		<br />
+		<br />
+		<button onclick="if (confirm('Are you sure you want to reset the track?')) { GAME.pushState(GAME.TRACK_JAR_EL, GAME.STATE_IDLE); }">Reset Track</button>
+		<br />
+		<br />
+		<br />
+		<br />
+		Looking for <a href="/jarel/adimn">A.I.M.Y. Track</a>?
+	</body>
+</html>

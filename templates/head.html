@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		
+		<link rel="stylesheet" type="text/css" href="/static/styles/lcars.css" />
+		
+		<script type="text/javascript" src="/_ah/channel/jsapi"></script>
+		<script type="text/javascript" src="/static/scripts/game.js"></script>
+		<script type="text/javascript">
+			window.addEventListener('load', function () {
+				GAME.initSocket('{{ token }}');
+				GAME.currentState = {{ state }};
+				GAME.startTime = {{ start_time }};
+			}, false);
+		</script>
+		</script>
+		
+		<script type="text/javascript" src="/static/scripts/material-touch.js"></script>

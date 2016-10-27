@@ -2,27 +2,85 @@
 # -*- coding: utf-8 -*-
 
 import os
+from time import time
 
 import jinja2
 import webapp2
 
 from google.appengine.api import channel
 
+from models import Game
+
 JINJA_ENVIRONMENT = jinja2.Environment(
 	loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), 'templates/')),
 	extensions=['jinja2.ext.autoescape'],
 	autoescape=True)
 
+PAGES = {
+	'jarel': [
+		'admin',
+		'progress',
+		'sudoku',
+		'lightsout'
+	],
+	'aimy': [
+		'admin',
+		'progress',
+		'rebus',
+		'sundial'
+	]
+}
+
+
+class APIHandler(webapp2.RequestHandler):
+	def get(self, query):
+		track = int(self.request.get('track'))
+		new_state = int(self.request.get('new_state'))
+		
+		game = Game.query(Game.track == track).get()
+		if new_state == Game.STATE_FIRST:
+			if not game:
+				game = Game()
+				game.track = track
+			game.start_time = int(time())
+		
+		game.state = new_state
+		game.put()
+		
+		if track == Game.TRACK_AIMY:
+			for page in PAGES['aimy']:
+				channel.send_message('aimy-' + page, '{"state": ' + `new_state` + ',"startTime":' + `game.start_time` + '}')
+		elif track == Game.TRACK_JAR_EL:
+			for page in PAGES['jarel']:
+				channel.send_message('jarel-' + page, '{"state": ' + `new_state` + ',"startTime":' + `game.start_time` + '}')
 
 class JarElPage(webapp2.RequestHandler):
 	def get(self, page):
-		template = JINJA_ENVIRONMENT.get_template(page + '.html')
-		self.response.write(template.render({}))
+		game = Game.query(Game.track == Game.TRACK_JAR_EL).get()
+		if (not game) and (page == 'admin'):
+			game = Game()
+		
+		template = JINJA_ENVIRONMENT.get_template('jarel/' + page + '.html')
+		self.response.write(template.render({
+			'token': channel.create_channel('jarel-' + page),
+			'state': game.state,
+			'start_time': game.start_time
+		}))
 
 class AIMYPage(webapp2.RequestHandler):
 	def get(self, page):
-		template = JINJA_ENVIRONMENT.get_template(page + '.html')
-		self.response.write(template.render({}))
+		game = Game.query(Game.track == Game.TRACK_AIMY).get()
+		if (not game) and (page == 'admin'):
+			game = Game()
+		
+		token = channel.create_channel('aimy-' + page)
+		
+		template = JINJA_ENVIRONMENT.get_template('aimy/' + page + '.html')
+		self.response.write(template.render({
+			'token': channel.create_channel('aimy-' + page),
+			'state': game.state,
+			'start_time': game.start_time
+		}))
 
 class AdminPage(webapp2.RequestHandler):
 	def get(self):
@@ -35,8 +93,8 @@ class HubPage(webapp2.RequestHandler):
 		self.response.write(template.render({}))
 
 app = webapp2.WSGIApplication([
+	('/api(.*)', APIHandler),
 	('/jarel/(.*)', JarElPage),
 	('/aimy/(.*)', AIMYPage),
-	('/admin', AdminPage),
 	('/(.*)', HubPage)
 ])

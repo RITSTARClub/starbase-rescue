@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		
-		<link rel="stylesheet" type="text/css" href="/static/styles/lcars.css" />
-		
-		<script type="text/javascript" src="/static/scripts/material-touch.js"></script>
+{% include 'head.html' %}
+		<link rel="stylesheet" type="text/css" href="/static/styles/basic_page.css" />
 	</head>
 	<body>
-		<h1 style="margin-top: 0;">Where are you trying to go?</h1>
+		<h1 style="font-size: 225%; margin-top: 0;">Where are you trying to go?</h1>
 		<h2>A.I.M.Y. Track</h2>
+		<a role="button" href="/aimy/admin">Admin Page</a>
+		<br />
+		<br />
 		<a role="button" href="/aimy/progress">Progress Bar</a>
 		<br />
 		<br />
@@ -22,6 +17,9 @@
 		<br />
 		<br />
 		<h2>Jar-El Track</h2>
+		<a role="button" href="/jarel/admin">Admin Page</a>
+		<br />
+		<br />
 		<a role="button" href="/jarel/progress">Progress Bar</a>
 		<br />
 		<br />
