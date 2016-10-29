@@ -63,6 +63,7 @@ class JarElPage(webapp2.RequestHandler):
 		template = JINJA_ENVIRONMENT.get_template('jarel/' + page + '.html')
 		self.response.write(template.render({
 			'token': channel.create_channel('jarel-' + page),
+			'track': Game.TRACK_JAR_EL,
 			'state': game.state,
 			'start_time': game.start_time
 		}))
@@ -78,6 +79,7 @@ class AIMYPage(webapp2.RequestHandler):
 		template = JINJA_ENVIRONMENT.get_template('aimy/' + page + '.html')
 		self.response.write(template.render({
 			'token': channel.create_channel('aimy-' + page),
+			'track': Game.TRACK_AIMY,
 			'state': game.state,
 			'start_time': game.start_time
 		}))

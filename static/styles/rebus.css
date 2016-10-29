@@ -49,22 +49,3 @@ body {
 			#keyboard button:last-of-type:not(:active):not(.active) {
 				background-color: #cc6699;
 			}
-
-
-#bsod {
-	display: none;
-	
-	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	overflow: hidden;
-	z-index: 100;
-	
-	background-color: #000080;
-	color: white;
-	font-family: 'Fixedsys', monospace;
-	font-weight: bold;
-	padding: 8px;
-}

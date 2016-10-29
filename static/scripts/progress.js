@@ -1,5 +1,5 @@
 (function () {
-	var MAX_SECONDS = 10;//2700;
+	var MAX_SECONDS = 2700;
 	
 	var interval,
 		progressBar,
@@ -12,26 +12,30 @@
 		progressBar.max = MAX_SECONDS;
 		progressBar.value = 0;
 		
-		GAME.onstatechange = function (state) {
-			if (state === GAME.STATE_IDLE || state === GAME.STATE_VICTORY) {
-				if (interval) {
-					clearInterval(interval);
-					interval = undefined;
-				}
-			} else if (state === GAME.STATE_FIRST) {
-				startClock();
-			}
-		};
+		GAME.addStateListener(handleStateChange);
+		handleStateChange(GAME.currentState);
 	}, false);
 	
-	function startClock() {
-		interval = setInterval(function () {
-			var seconds = ((new Date()).getTime() / 1000) - GAME.startTime;
-			progressBar.value = seconds;
-			if (MAX_SECONDS - seconds < 120) {
-				message.style.color = 'red';
-				progressBar.style.backgroundColor = 'red';
+	function handleStateChange(state) {
+		if (state === GAME.STATE_IDLE || state === GAME.STATE_FAILURE || state === GAME.STATE_VICTORY) {
+			if (interval) {
+				clearInterval(interval);
+				interval = undefined;
 			}
-		}, 1000);
+		} else if (state === GAME.STATE_FIRST) {
+			interval = setInterval(tick, 1000);
+		}
+	}
+	
+	function tick() {
+		var seconds = ((new Date()).getTime() / 1000) - GAME.startTime;
+		progressBar.value = seconds;
+		if (MAX_SECONDS - seconds < 120) {
+			message.style.color = 'red';
+			progressBar.style.backgroundColor = 'red';
+		}
+		if (seconds >= MAX_SECONDS) {
+			GAME.pushState(GAME.STATE_FAILURE);
+		}
 	}
 })();

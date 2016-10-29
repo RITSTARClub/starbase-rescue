@@ -10,7 +10,8 @@ class Game(ndb.Model):
 	STATE_IDLE = 0
 	STATE_FIRST = 1 # First room
 	STATE_FINAL = 2 # Final room
-	STATE_VICTORY = 3
+	STATE_FAILURE = 3
+	STATE_VICTORY = 4
 	
 	track = ndb.IntegerProperty()
 	state = ndb.IntegerProperty()

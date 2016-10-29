@@ -12,6 +12,7 @@
 		<script type="text/javascript">
 			window.addEventListener('load', function () {
 				GAME.initSocket('{{ token }}');
+				GAME.currentTrack = {{ track }};
 				GAME.currentState = {{ state }};
 				GAME.startTime = {{ start_time }};
 			}, false);

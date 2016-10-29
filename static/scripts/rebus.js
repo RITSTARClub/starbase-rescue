@@ -78,10 +78,7 @@
 		
 		if (unlockedCount === 3) {
 			document.body.classList.add('unlocked');
-			GAME.pushState(GAME.TRACK_AIMY, GAME.STATE_VICTORY);
-			setTimeout(function () {
-				document.getElementById('bsod').style.display = 'block';
-			}, 1500);
+			GAME.pushState(GAME.STATE_VICTORY);
 		}
 	}
 })();

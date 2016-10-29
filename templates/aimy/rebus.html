@@ -1,6 +1,7 @@
 {% include 'head.html' %}
 		<link rel="stylesheet" type="text/css" href="/static/styles/rebus.css" />
 		<script type="text/javascript" src="/static/scripts/rebus.js"></script>
+		<script type="text/javascript" src="/static/scripts/aimy.js"></script>
 	</head>
 	<body>
 		<table role="heading" class="headerBar">
@@ -20,56 +21,6 @@
 		</div>
 		<div id="keyboard">
 		</div>
-		<div id="bsod">
-			A problem has been detected and A.I.M.Y. has been shut down to prevent damage
-			<br />
-			to your computer.
-			<br />
-			<br />
-			<br />
-			The problem seems to be caused by the following file: AIMECONN.SYS
-			<br />
-			<br />
-			HUMAN_OVERRIDE_SUCCEEDED_AGAINST_ALL_ODDS
-			<br />
-			<br />
-			<br />
-			If this is the first time you've seen this stop error screen,
-			<br />
-			restart your A.I.M.Y. instance. If this screen appears again,
-			<br />
-			follow these steps:
-			<br />
-			<br />
-			<br />
-			Check to make sure any new hardware or software is properly installed.
-			<br />
-			If this is a new installation, ask your hardware or software manufacturer
-			<br />
-			for any A.I.M.Y. updates you might need.
-			<br />
-			<br />
-			<br />
-			If problems continue, disable or remove any newly installed hardware
-			<br />
-			or software. Disable A.I.M.Y. memory options such as caching or shadowing.
-			<br />
-			If you need to use Safe Mode to remove or disable components, restart
-			<br />
-			your A.I.M.Y. instance, select Advanced Startup Options, and then select
-			<br />
-			Safe Mode.
-			<br />
-			<br />
-			<br />
-			Technical information:
-			<br />
-			<br />
-			*** STOP: 0x00000050 (0xFD3094C2,0x00000001,0xFBFE7617,0x00000000)
-			<br />
-			<br />
-			<br />
-			***  AIMYCONN.SYS - Address FBFE7617 base at FBFE5000, StarDate 3d6dd67c
-		</div>
+		{% include 'aimy/bsod.html' %}
 	</body>
 </html>
