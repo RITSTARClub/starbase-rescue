@@ -1,8 +1,8 @@
 (function () {
 	var SOLUTIONS = [
-		'ONE',
-		'TWO',
-		'THREE'
+		'MAYTHEFORCEBEWITHYOU',
+		'LIVELONGANDPROSPER',
+		'YOUCANTTAKETHESKYFROMME'
 	];
 	
 	var keys,
