@@ -1,0 +1,18 @@
+{% include 'head.html' %}
+		<link rel="stylesheet" type="text/css" href="/static/styles/basic_page.css" />
+	</head>
+	<body>
+		<h2 style="margin: 0;">Admin Control For</h2>
+		<h1 style="margin: 0;">STARfest TRACK</h1>
+		<button onclick="GAME.pushState(GAME.STATE_FIRST);">Start Track</button>
+		<br />
+		<br />
+		<button onclick="GAME.pushState(GAME.STATE_FAILURE);">Failure</button>
+		<br />
+		<br />
+		<button onclick="GAME.pushState(GAME.STATE_VICTORY);">Victory</button>
+		<br />
+		<br />
+		<button onclick="if (confirm('Are you sure you want to reset the track?')) { GAME.pushState(GAME.STATE_IDLE); }">Reset Track</button>
+	</body>
+</html>

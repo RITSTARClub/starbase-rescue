@@ -6,6 +6,7 @@ from google.appengine.ext import ndb
 class Game(ndb.Model):
 	TRACK_AIMY = 0
 	TRACK_JAR_EL = 1
+	TRACK_STARFEST = 2
 	
 	STATE_IDLE = 0
 	STATE_FIRST = 1 # First room

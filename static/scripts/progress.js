@@ -1,5 +1,5 @@
 (function () {
-	var MAX_SECONDS = 2700;
+	var MAX_SECONDS = 1800;//2700;
 	
 	var interval,
 		progressBar,

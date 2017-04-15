@@ -28,6 +28,11 @@ PAGES = {
 		'progress',
 		'rebus',
 		'sundial'
+	],
+	'starfest': [
+		'admin',
+		'progress',
+		'sudoku'
 	]
 }
 
@@ -53,6 +58,9 @@ class APIHandler(webapp2.RequestHandler):
 		elif track == Game.TRACK_JAR_EL:
 			for page in PAGES['jarel']:
 				channel.send_message('jarel-' + page, '{"state": ' + `new_state` + ',"startTime":' + `game.start_time` + '}')
+		elif track == Game.TRACK_STARFEST:
+			for page in PAGES['starfest']:
+				channel.send_message('starfest-' + page, '{"state": ' + `new_state` + ',"startTime":' + `game.start_time` + '}')
 
 class JarElPage(webapp2.RequestHandler):
 	def get(self, page):
@@ -84,6 +92,22 @@ class AIMYPage(webapp2.RequestHandler):
 			'start_time': game.start_time
 		}))
 
+class STARfestPage(webapp2.RequestHandler):
+	def get(self, page):
+		game = Game.query(Game.track == Game.TRACK_STARFEST).get()
+		if (not game) and (page == 'admin'):
+			game = Game()
+		
+		token = channel.create_channel('starfest-' + page)
+		
+		template = JINJA_ENVIRONMENT.get_template('starfest/' + page + '.html')
+		self.response.write(template.render({
+			'token': channel.create_channel('starfest-' + page),
+			'track': Game.TRACK_STARFEST,
+			'state': game.state,
+			'start_time': game.start_time
+		}))
+
 class AdminPage(webapp2.RequestHandler):
 	def get(self):
 		template = JINJA_ENVIRONMENT.get_template('admin.html')
@@ -98,5 +122,6 @@ app = webapp2.WSGIApplication([
 	('/api(.*)', APIHandler),
 	('/jarel/(.*)', JarElPage),
 	('/aimy/(.*)', AIMYPage),
+	('/starfest/(.*)', STARfestPage),
 	('/(.*)', HubPage)
 ])

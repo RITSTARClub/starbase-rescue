@@ -67,13 +67,13 @@
 				case (5 * 60):
 					tracks.puzzle_first05.play();
 					break;
-				case (15 * 60):
+				case (/*15*/10 * 60):
 					tracks.puzzle_first15.play();
 					break;
-				case (20 * 60):
+				case (/*20*/15 * 60):
 					tracks.puzzle_first20.play();
 					break;
-				case (30 * 60):
+				case (/*30*/20 * 60):
 					tracks.puzzle_first30.play();
 					break;
 			}
